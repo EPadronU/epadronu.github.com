@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: white;
+  font-family: "Noto Sans", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+a {
+  color: black;
+  font-weight: 550;
+  text-decoration: none;
+}
+
+header nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  list-style: none;
+}
+
+header nav ul li:first-of-type {
+  background-color: #806BDC;
+  flex: 1 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+header nav ul li:first-of-type a {
+  color: white;
+  font-size: 1.5625rem;
+  line-height: 2.4;
+}
+
+header nav ul li:not(:first-of-type) {
+  flex-grow: 1;
+  min-width: calc(100% / 3);
+  padding: 1rem 0;
+}
+
+header nav ul li:not(:first-of-type):hover a {
+  color: #806BDC;
+}
+
+header nav ul li figure {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+  text-align: center;
+}
+
+header nav ul li figure img {
+  display: block;
+  height: 4rem;
+  margin: 0 auto;
+}
+
+header nav ul li figure figcaption {
+  font-size: 0.875rem;
+}
+
+.shopping-container {
+  background-color: lightgrey;
+  padding: 1.875rem 0;
+  text-align: center;
+}
+
+.shopping-container img {
+  height: 100%;
+  width: 100vw;
+}
+
+@media screen and (min-width: 481px) {
+  header nav ul li:not(:first-of-type) {
+    min-width: revert;
+  }
+
+  .shopping-container img {
+    width: 90vw;
+  }
+}
