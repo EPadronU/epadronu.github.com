@@ -246,7 +246,7 @@ main .main-header {
 }
 
 .other-languages ul {
-  background-image: url("./src/images/lang.svg");
+  background-image: url("../assets/images/lang.svg");
   background-position: 100% 50%;
   background-repeat: no-repeat;
   background-size: 1rem;
