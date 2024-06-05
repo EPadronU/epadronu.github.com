@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:ital,wght@0,100..900;1,100..900&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+}
+
+a:visited {
+  color: inherit;
+}
+
+html {
+  background-color: #071A28;
+  color: aliceblue;
+  font-family: 'Noto Sans Mono', 'Courier New', Courier, monospace;
+  font-size: 16px;
+}
+
+header {
+  background: rgb(25 84 94 / 18%);
+  background: linear-gradient(180deg, rgb(0 0 0) 0%, rgb(25 84 94 / 18%) 100%);
+  color: white;
+  padding: 1.25rem 0;
+}
+
+header h1 {
+  font-size: 2rem;
+  padding: 0.625rem;
+  padding-bottom: 1.875em;
+  text-align: center;
+}
+
+header h1 a {
+  text-decoration: none;
+}
+
+header h2 {
+  font-family: cursive;
+  font-size: 1.5rem;
+  padding: 0.3125rem 1.25rem 0.3125rem 0;
+  text-align: right;
+}
+
+header blockquote {
+  margin-left: 30%;
+  padding-right: 1.25rem;
+  padding-top: 1.875rem;
+  text-align: right;
+}
+
+main article h2 {
+  padding-bottom: 1.875rem;
+  padding-top: 6.25rem;
+  text-align: center;
+}
+
+.room-type-card {
+  margin: auto;
+  margin-bottom: 6.375rem;
+  max-width: 94%;
+  text-align: center;
+}
+
+.room-type-card .header {
+  background-color: #f70303;
+  color: white;
+  font-weight: bold;
+}
+
+.room-type-card :is(.header, .content) {
+  border: 1px solid #f70303;
+  padding: 0.625rem;
+}
+
+.room-type-card .content ul {
+  display: inline-block;
+  margin: auto;
+  padding: 1.2rem;
+  text-align: left;
+}
+
+.room-type-card .content li+li {
+  margin-top: 1.3125rem;
+}
+
+.room-type-card .content img {
+  height: auto;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.room-type-card .content figcaption {
+  font-weight: bold;
+}
+
+.call-to-action {
+  font-weight: bold;
+  padding-bottom: 3.125rem;
+  padding-top: 1.875rem;
+  text-align: center;
+}
+
+footer {
+  background-color: #4F2D18;
+  padding: 1.25rem 0;
+  text-align: center;
+}
+
+@media screen and (min-width: 32rem) {
+  .room-type-card {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .room-type-card .room-type-card-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 calc(100% / 3);
+  }
+
+  .room-type-card .room-type-card-section .content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  .room-type-card .content ul {
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  header h1 {
+    font-size: 4rem;
+  }
+
+  header h2 {
+    font-size: 3rem;
+  }
+
+  .room-type-card {
+    max-width: 70%;
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  header h1 {
+    font-size: 5rem;
+  }
+
+  header h2 {
+    font-size: 4rem;
+  }
+}
