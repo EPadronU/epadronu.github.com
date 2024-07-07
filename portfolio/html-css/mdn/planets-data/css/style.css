@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+h1 {
+  margin: 1rem 0;
+  padding: 0.4em;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  border: 2px solid #C8C8C8;
+  font-size: 0.75rem;
+  margin: 1rem auto;
+  width: 98%;
+}
+
+table colgroup col.highligth {
+  border: 2px solid black;
+}
+
+table caption {
+  padding: 0.6em;
+}
+
+table :is(th, td) {
+  border: 1px solid lightgrey;
+  padding: 0.6em 1em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table th {
+  background-color: #EBEBEB;
+}
+
+table :is(thead, tbody) {
+  letter-spacing: 0.08em;
+}
+
+
+table tbody tr:nth-child(odd) {
+  background-color: #F5F5F5;
+}

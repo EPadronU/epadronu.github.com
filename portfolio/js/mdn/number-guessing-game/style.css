@@ -1,0 +1,25 @@
+html {
+  font: 16px / 1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 800px;
+  min-width: 480px;
+  width: 50%;
+}
+
+.form input[type="number"] {
+  width: 200px;
+}
+
+.last-result {
+  color: white;
+  font-weight: bold;
+  padding: 3px;
+  text-align: center;
+}
+
+.reset-button {
+  display: none;
+}
