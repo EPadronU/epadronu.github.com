@@ -39,11 +39,7 @@ guessFieldInput.addEventListener("keydown", (event) => {
 
 guessSubmitInput.addEventListener("click", checkGuess);
 
-resetButton.addEventListener("keyup", (event) => {
-  if (event.key === "Enter" && event.target.style.display !== "none") {
-    resetButton.addEventListener("click", resetGame);
-  }
-});
+resetButton.addEventListener("click", resetGame);
 
 /* Functions */
 function getRandomNumber(min = guessNumberLowerBoundary, max = guessNumberHigherBoundary) {
@@ -99,10 +95,11 @@ function setGameOver() {
 
   resetButton.style.display = "revert";
 
-  resetButton.focus();
+  setTimeout(() => resetButton.focus(), 500);
 }
 
 function resetGame() {
+  console.log('reset');
   guessCount = initialGuessCount;
 
   const resetParagrahs = document.querySelectorAll(".result-paragraghs p");
@@ -112,7 +109,6 @@ function resetGame() {
   }
 
   resetButton.style.display = "none";
-  resetButton.removeEventListener("click", resetGame);
 
   guessFieldInput.disabled = false;
   guessFieldInput.value = "";

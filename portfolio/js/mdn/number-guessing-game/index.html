@@ -19,7 +19,7 @@
 
   <div class="form">
     <label for="guess-field">Enter a guess:</label>
-    <input id="guess-field" class="guess-field" type="number" min="1" max="100" required>
+    <input id="guess-field" class="guess-field" type="text" minlength="1" maxlength="3" pattern="[1-9][0-9]{0,2}" required>
     <input class="guess-submit" type="submit" value="Submit guess">
   </div>
 
