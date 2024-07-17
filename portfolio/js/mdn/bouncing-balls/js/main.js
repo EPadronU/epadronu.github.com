@@ -13,6 +13,7 @@ class Drawable {
     this.yVelocity = yVelocity;
     this.color = color;
     this.size = size;
+    this.touchPoint = null;
   }
 
   equalsTo(other) {
@@ -152,6 +153,8 @@ class EvilCircle extends Drawable {
   #mouseEventHandler = event => this.#onMouseMove(event);
   #keydownEventHandler = event => this.#onKeydown(event);
   #keyupEventHandler = event => this.#onKeyup(event);
+  #touchStartEventHandler = event => this.#onTouch(event);
+  #touchMoveEventHandler = event => this.#onTouch(event);
 
   constructor(x, y, xVelocity = 10, yVelocity = 10, color = "white", size = 10, teethQuantity = 10, rotationSpeed = 0.1) {
     super(uuidv4(), x, y, 0, 0, color, size);
@@ -204,6 +207,10 @@ class EvilCircle extends Drawable {
   #onMouseMove({ pageX, pageY }) {
     this.x = pageX;
     this.y = pageY;
+  }
+
+  #onTouch({ touches: [{ pageX, pageY }, ..._] }) {
+    this.touchPoint = { x: pageX, y: pageY };
   }
 
   #drawBlackHole(ctx) {
@@ -267,6 +274,23 @@ class EvilCircle extends Drawable {
   update(xLimit, yLimit, drawables) {
     super.update(xLimit, yLimit, drawables);
 
+    /* Calculate velocity towards touch point */
+    if (this.touchPoint) {
+      const deltaX = this.touchPoint.x - this.x;
+      const deltaY = this.touchPoint.y - this.y;
+      const hypot = Math.hypot(deltaX, deltaY) | 0;
+
+      if (hypot <= this.size) {
+        this.touchPoint = null;
+        this.xVelocity = 0;
+        this.yVelocity = 0;
+
+      } else {
+        this.xVelocity = Math.ceil(deltaX / hypot * this.xReferenceVelocity);
+        this.yVelocity = Math.ceil(deltaY / hypot * this.yReferenceVelocity);
+      }
+    }
+
     /* Move the drawable */
     this.x += this.xVelocity;
     this.y += this.yVelocity;
@@ -296,15 +320,28 @@ class EvilCircle extends Drawable {
   }
 
   enableControl() {
-    window.addEventListener("mousemove", this.#mouseEventHandler);
-    window.addEventListener("keydown", this.#keydownEventHandler);
-    window.addEventListener("keyup", this.#keyupEventHandler);
+    if (isTouchDevice()) {
+      window.addEventListener("touchstart", this.#touchStartEventHandler)
+      window.addEventListener("touchmove", this.#touchMoveEventHandler)
+
+    } else {
+      window.addEventListener("mousemove", this.#mouseEventHandler);
+      window.addEventListener("keydown", this.#keydownEventHandler);
+      window.addEventListener("keyup", this.#keyupEventHandler);
+
+    }
   }
 
   disableControl() {
-    window.removeEventListener("mousemove", this.#mouseEventHandler)
-    window.removeEventListener("keydown", this.#keydownEventHandler);
-    window.removeEventListener("keyup", this.#keyupEventHandler);
+    if (isTouchDevice()) {
+      window.removeEventListener("touchstart", this.#touchStartEventHandler)
+      window.removeEventListener("touchmove", this.#touchMoveEventHandler)
+
+    } else {
+      window.removeEventListener("mousemove", this.#mouseEventHandler)
+      window.removeEventListener("keydown", this.#keydownEventHandler);
+      window.removeEventListener("keyup", this.#keyupEventHandler);
+    }
   }
 
   draw(ctx) {
@@ -339,6 +376,12 @@ function random(min, max) {
 
 function randomRGB() {
   return `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`;
+}
+
+function isTouchDevice() {
+  return (('ontouchstart' in window) ||
+    (navigator.maxTouchPoints > 0) ||
+    (navigator.msMaxTouchPoints > 0));
 }
 
 function animationLoop(ctx, color, width, height, drawables, evilCircle, ballCount) {
